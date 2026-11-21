@@ -1,0 +1,322 @@
+{
+  "generated_at": "2026-11-21T14:43:09.120137+00:00",
+  "source": "scripts/summarize_peak_repeats.py 从逐轮 loadtest JSON 汇总；逐轮统计值、seed 与启动顺序已纳入，逐请求样本未纳入",
+  "rounds": 8,
+  "requests_per_round": 4000,
+  "concurrency": 24,
+  "warmup_requests_per_round": 64,
+  "request_seed_varied": true,
+  "seed_range": {
+    "min": 20261122,
+    "max": 20261129
+  },
+  "start_order_counts": {
+    "cache_on_first": 5,
+    "cache_off_first": 3
+  },
+  "runs": [
+    {
+      "round": 1,
+      "start_order": "cache_on_first",
+      "seed": 20261122,
+      "cache_on": {
+        "count": 4000,
+        "ok": 4000,
+        "p50_ms": 26.397,
+        "p95_ms": 120.319,
+        "p99_ms": 200.915,
+        "max_ms": 417.672,
+        "rps": 597.73,
+        "db_queries_total": 0,
+        "db_queries_per_request": 0.0
+      },
+      "cache_off": {
+        "count": 4000,
+        "ok": 4000,
+        "p50_ms": 39.52,
+        "p95_ms": 147.696,
+        "p99_ms": 235.458,
+        "max_ms": 378.047,
+        "rps": 454.34,
+        "db_queries_total": 12614,
+        "db_queries_per_request": 3.154
+      },
+      "paired_p95_delta_pct": -18.54,
+      "paired_rps_delta_pct": 31.56
+    },
+    {
+      "round": 2,
+      "start_order": "cache_on_first",
+      "seed": 20261123,
+      "cache_on": {
+        "count": 4000,
+        "ok": 4000,
+        "p50_ms": 27.335,
+        "p95_ms": 120.529,
+        "p99_ms": 192.384,
+        "max_ms": 358.207,
+        "rps": 580.89,
+        "db_queries_total": 0,
+        "db_queries_per_request": 0.0
+      },
+      "cache_off": {
+        "count": 4000,
+        "ok": 4000,
+        "p50_ms": 40.518,
+        "p95_ms": 85.59,
+        "p99_ms": 162.809,
+        "max_ms": 413.861,
+        "rps": 531.99,
+        "db_queries_total": 12632,
+        "db_queries_per_request": 3.158
+      },
+      "paired_p95_delta_pct": 40.82,
+      "paired_rps_delta_pct": 9.19
+    },
+    {
+      "round": 3,
+      "start_order": "cache_on_first",
+      "seed": 20261124,
+      "cache_on": {
+        "count": 4000,
+        "ok": 4000,
+        "p50_ms": 28.374,
+        "p95_ms": 124.788,
+        "p99_ms": 196.238,
+        "max_ms": 365.111,
+        "rps": 557.65,
+        "db_queries_total": 0,
+        "db_queries_per_request": 0.0
+      },
+      "cache_off": {
+        "count": 4000,
+        "ok": 4000,
+        "p50_ms": 42.783,
+        "p95_ms": 111.864,
+        "p99_ms": 201.279,
+        "max_ms": 419.446,
+        "rps": 489.0,
+        "db_queries_total": 12588,
+        "db_queries_per_request": 3.147
+      },
+      "paired_p95_delta_pct": 11.55,
+      "paired_rps_delta_pct": 14.04
+    },
+    {
+      "round": 4,
+      "start_order": "cache_on_first",
+      "seed": 20261125,
+      "cache_on": {
+        "count": 4000,
+        "ok": 4000,
+        "p50_ms": 27.305,
+        "p95_ms": 128.448,
+        "p99_ms": 205.465,
+        "max_ms": 422.199,
+        "rps": 573.97,
+        "db_queries_total": 0,
+        "db_queries_per_request": 0.0
+      },
+      "cache_off": {
+        "count": 4000,
+        "ok": 4000,
+        "p50_ms": 38.073,
+        "p95_ms": 147.579,
+        "p99_ms": 247.753,
+        "max_ms": 461.587,
+        "rps": 456.2,
+        "db_queries_total": 12618,
+        "db_queries_per_request": 3.155
+      },
+      "paired_p95_delta_pct": -12.96,
+      "paired_rps_delta_pct": 25.82
+    },
+    {
+      "round": 5,
+      "start_order": "cache_on_first",
+      "seed": 20261126,
+      "cache_on": {
+        "count": 4000,
+        "ok": 4000,
+        "p50_ms": 29.435,
+        "p95_ms": 132.886,
+        "p99_ms": 201.557,
+        "max_ms": 348.673,
+        "rps": 531.28,
+        "db_queries_total": 0,
+        "db_queries_per_request": 0.0
+      },
+      "cache_off": {
+        "count": 4000,
+        "ok": 4000,
+        "p50_ms": 39.768,
+        "p95_ms": 114.183,
+        "p99_ms": 196.745,
+        "max_ms": 369.568,
+        "rps": 514.87,
+        "db_queries_total": 12656,
+        "db_queries_per_request": 3.164
+      },
+      "paired_p95_delta_pct": 16.38,
+      "paired_rps_delta_pct": 3.19
+    },
+    {
+      "round": 6,
+      "start_order": "cache_off_first",
+      "seed": 20261127,
+      "cache_on": {
+        "count": 4000,
+        "ok": 4000,
+        "p50_ms": 28.551,
+        "p95_ms": 121.791,
+        "p99_ms": 198.889,
+        "max_ms": 393.906,
+        "rps": 564.41,
+        "db_queries_total": 0,
+        "db_queries_per_request": 0.0
+      },
+      "cache_off": {
+        "count": 4000,
+        "ok": 4000,
+        "p50_ms": 38.859,
+        "p95_ms": 129.173,
+        "p99_ms": 219.528,
+        "max_ms": 457.194,
+        "rps": 492.67,
+        "db_queries_total": 12571,
+        "db_queries_per_request": 3.143
+      },
+      "paired_p95_delta_pct": -5.71,
+      "paired_rps_delta_pct": 14.56
+    },
+    {
+      "round": 7,
+      "start_order": "cache_off_first",
+      "seed": 20261128,
+      "cache_on": {
+        "count": 4000,
+        "ok": 4000,
+        "p50_ms": 25.636,
+        "p95_ms": 117.911,
+        "p99_ms": 183.165,
+        "max_ms": 341.586,
+        "rps": 613.4,
+        "db_queries_total": 0,
+        "db_queries_per_request": 0.0
+      },
+      "cache_off": {
+        "count": 4000,
+        "ok": 4000,
+        "p50_ms": 39.929,
+        "p95_ms": 114.978,
+        "p99_ms": 197.748,
+        "max_ms": 366.596,
+        "rps": 498.75,
+        "db_queries_total": 12646,
+        "db_queries_per_request": 3.162
+      },
+      "paired_p95_delta_pct": 2.55,
+      "paired_rps_delta_pct": 22.99
+    },
+    {
+      "round": 8,
+      "start_order": "cache_off_first",
+      "seed": 20261129,
+      "cache_on": {
+        "count": 4000,
+        "ok": 4000,
+        "p50_ms": 26.918,
+        "p95_ms": 117.265,
+        "p99_ms": 181.27,
+        "max_ms": 480.082,
+        "rps": 591.45,
+        "db_queries_total": 0,
+        "db_queries_per_request": 0.0
+      },
+      "cache_off": {
+        "count": 4000,
+        "ok": 4000,
+        "p50_ms": 37.869,
+        "p95_ms": 147.512,
+        "p99_ms": 230.194,
+        "max_ms": 520.835,
+        "rps": 460.62,
+        "db_queries_total": 12568,
+        "db_queries_per_request": 3.142
+      },
+      "paired_p95_delta_pct": -20.5,
+      "paired_rps_delta_pct": 28.4
+    }
+  ],
+  "cache_on": {
+    "p95_ms": {
+      "median": 121.16,
+      "min": 117.265,
+      "max": 132.886
+    },
+    "p50_ms": {
+      "median": 27.32
+    },
+    "rps": {
+      "median": 577.43
+    },
+    "db_queries_total_per_round": {
+      "min": 0,
+      "max": 0
+    }
+  },
+  "cache_off": {
+    "p95_ms": {
+      "median": 122.076,
+      "min": 85.59,
+      "max": 147.696
+    },
+    "p50_ms": {
+      "median": 39.644
+    },
+    "rps": {
+      "median": 490.835
+    },
+    "db_queries_total_per_round": {
+      "min": 12568,
+      "max": 12656
+    }
+  },
+  "paired_p95_delta_pct_cache_on_vs_off": {
+    "formula": "(cache_on_p95 / cache_off_p95 - 1) * 100",
+    "median": -1.58,
+    "min": -20.5,
+    "max": 40.82,
+    "median_by_start_order": {
+      "cache_on_first": {
+        "rounds": 5,
+        "median": 11.55
+      },
+      "cache_off_first": {
+        "rounds": 3,
+        "median": -5.71
+      }
+    }
+  },
+  "single_run_context": {
+    "repository_report": {
+      "source": "evidence/09-peak-cache-on.json and evidence/10-peak-cache-off.json",
+      "cache_on_p95_ms": 112.517,
+      "cache_off_p95_ms": 103.113,
+      "paired_delta_pct": 9.12
+    },
+    "independent_retest": {
+      "source": "2026-11-21 独立单轮复测",
+      "cache_on_p95_ms": 115.464,
+      "cache_off_p95_ms": 85.86,
+      "paired_delta_pct": 34.48
+    }
+  },
+  "raw_per_round_data_included": true,
+  "raw_request_samples_included": false,
+  "limitations": [
+    "逐轮统计值、seed 与启动顺序已纳入，可由 runs 数组独立重算中位数、范围与分组。",
+    "未纳入逐请求样本；历史单轮逐请求样本见 evidence/09/10。",
+    "启动顺序分组差异提示测量结果与顺序相关，8 轮样本不足以判定因果。"
+  ]
+}

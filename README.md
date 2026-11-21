@@ -99,7 +99,7 @@ DATABASE_URL="$DATABASE_URL" REDIS_URL="$REDIS_URL" ADMIN_TOKEN="$ADMIN_TOKEN" \
   --label cache-off --mode cache-off --requests 8000 --concurrency 4 \
   --out evidence/04-loadtest-cache-off.json
 
-# 峰值敏感性：24 并发、4,000 请求
+# 历史单轮峰值样本：24 并发、4,000 请求（正式峰值结论以 8 轮汇总为准）
 .venv/bin/python scripts/loadtest.py --base-url http://127.0.0.1:8011 \
   --label peak-on --mode cache-on --requests 4000 --concurrency 24 \
   --out evidence/09-peak-cache-on.json
@@ -115,6 +115,10 @@ DATABASE_URL="$DATABASE_URL" REDIS_URL="$REDIS_URL" ADMIN_TOKEN="$ADMIN_TOKEN" \
 .venv/bin/python scripts/verify_protections.py \
   --on-url http://127.0.0.1:8011 --off-url http://127.0.0.1:8012 \
   --output evidence/07-protections.json
+
+# 8 轮峰值汇总（逐轮文件按 s4-perf-011-repeat-<n>-cache-on/off.json 放置）
+.venv/bin/python scripts/summarize_peak_repeats.py --input-dir /tmp \
+  --output evidence/11-peak-multirun-summary.json
 
 # 重新生成清单与报告
 .venv/bin/python scripts/export_cache_points.py
@@ -182,7 +186,9 @@ DATABASE_URL="$DATABASE_URL" REDIS_URL="$REDIS_URL" ADMIN_TOKEN="$ADMIN_TOKEN" \
 
 ### 3.4 峰值敏感性
 
-24 并发、4,000 请求：缓存开启 RPS 605.51 vs 514.6（+17.67%），P50 26.495 vs 40.466 ms（-34.53%），P95 112.517 vs 103.113 ms（+9.12%）。单进程同步 Redis 客户端在 24 并发下成为尾延迟瓶颈；详细分析见 `docs/verification-report.md` 第 3.3、6 节。
+正式峰值结论基于 8 轮复测，每轮 24 并发、4,000 请求，使用不同 request seed，并轮换缓存开/关启动顺序。缓存开启/关闭的 P95 中位数为 121.16 / 122.08 ms，轮间范围分别为 117.265–132.886 / 85.590–147.696 ms。逐轮配对 P95 差值（开启相对关闭）中位数为 -1.58%，范围 -20.50%–+40.82%；开启先跑的 5 轮中位数 +11.55%，关闭先跑的 3 轮中位数 -5.71%。P95 对启动顺序敏感，不能据此认定缓存开启造成稳定尾延迟回归。
+
+较稳定的观察是 P50 中位数 27.32 vs 39.644 ms（缓存开启约降低 31%）、RPS 中位数 577.43 vs 490.84（约提升 18%），数据库查询为 0 vs 12,568–12,656 次/轮。此前单轮配对差值 +9.12%（仓库 09/10）与 +34.48%（独立复测）仅作历史观测，均不作为峰值 P95 结论。8 轮汇总见 `evidence/11-peak-multirun-summary.json`；`runs` 数组含逐轮统计值、seed 与启动顺序，可由 `scripts/summarize_peak_repeats.py` 重算。详细分析见 `docs/verification-report.md` 第 3.3、6 节。
 
 ---
 
@@ -191,7 +197,7 @@ DATABASE_URL="$DATABASE_URL" REDIS_URL="$REDIS_URL" ADMIN_TOKEN="$ADMIN_TOKEN" \
 | 验收标准 | 交付位置 | 结果 |
 |---|---|---|
 | 1. 缓存点清单写明键规则与过期时间 | `docs/cache-points.md`、`evidence/02-cache-points.json`、`/api/admin/cache/points` | 4 个业务缓存点 + 3 类辅助键（负缓存/Bloom/单飞锁），键规则/TTL/失效/防护齐全 |
-| 2. 开启与关闭缓存的 P95 与数据库负载对比 | `docs/verification-report.md` 第 3 节、`evidence/03`、`04`、`05-loadtest-comparison.json`、峰值 `09`/`10` | 常态 P95 3.933 vs 8.591 ms；DB 查询 0 vs 25,207 |
+| 2. 开启与关闭缓存的 P95 与数据库负载对比 | `docs/verification-report.md` 第 3 节、`evidence/03`、`04`、`05-loadtest-comparison.json`、峰值单轮 `09`/`10` 与 8 轮汇总 `11-peak-multirun-summary.json` | 常态 P95 3.933 vs 8.591 ms；DB 查询 0 vs 25,207；峰值 P95 中位数、范围及启动顺序敏感性已披露 |
 | 3. 数据修改后读取到新值的时间有实测记录 | `docs/verification-report.md` 第 4 节、`evidence/06-invalidation.csv`、`evidence/06-invalidation.json` | 4 点各 30 次，120/120 命中新值；服务端 P95 ≤0.177 ms |
 
 ---
@@ -217,6 +223,7 @@ scripts/
   loadtest.py        # 缓存开/关对比压测
   measure_invalidation.py
   verify_protections.py
+  summarize_peak_repeats.py  # 汇总 8 轮峰值逐轮 JSON
   build_report.py    # 从 evidence 回填报告
   test.sh            # 单测入口（测试库+独立 Redis DB）
   smoke.sh           # 运行中服务的冒烟检查
@@ -246,7 +253,7 @@ docker/initdb/       # 初始化两个数据库
 ## 7. 已知边界与改进方向
 
 1. `commit` 与 `DEL` 不是原子操作；进程崩溃或 Redis 不可用时旧值会保留到 TTL 到期。生产建议 outbox/CDC + 重试失效消费者，并对失效失败告警。
-2. 峰值下同步 redis-py 的尾延迟上升；建议 `redis.asyncio`、多 worker 或 L1 + Pub/Sub 失效（需同时解决可靠失效）。
+2. 峰值 P95 受测试启动顺序影响：8 轮配对差值跨越 -20.50%–+40.82%，分组中位数方向不同，暂不能归因于缓存回归。复测应保留逐轮 seed/JSON、平衡或随机化开关顺序，并尽量隔离压测客户端与服务端；受控复测稳定出现回归后，再评估 `redis.asyncio`、多 worker 或 L1 + Pub/Sub 失效（需同时解决可靠失效）。
 3. 未实现多实例本地 L1，因此未测量跨实例 L1 失效；当前所有实例共享 Redis，DEL 后立即可见。
 4. Bloom 在字典项变更后整体重建；生产建议预热或可增量维护的过滤器。
 5. 压测客户端与服务端同机，峰值绝对数值受本机 CPU/调度影响；4 并发常态数据作为本单容量基线，不作为生产 SLA。
@@ -264,6 +271,7 @@ docker/initdb/       # 初始化两个数据库
 | `evidence/06-invalidation.json` / `.csv` | 4 点 ×30 次失效时延 |
 | `evidence/07-protections.json` | 穿透/负缓存/击穿对照 |
 | `evidence/08-smoke.log` | 运行中服务的冒烟输出（四点键规则/TTL、响应头、Bloom 拦截） |
-| `evidence/09-peak-cache-on.json` / `10-peak-cache-off.json` | 24 并发峰值数据 |
+| `evidence/09-peak-cache-on.json` / `10-peak-cache-off.json` | 24 并发峰值历史单轮原始数据 |
+| `evidence/11-peak-multirun-summary.json` | 8 轮峰值汇总，含逐轮统计值、seed 与启动顺序；逐请求样本未纳入 |
 
 > 数据全部为虚构演示数据；本仓库不包含客户名称、真实会员企业或个人信息。

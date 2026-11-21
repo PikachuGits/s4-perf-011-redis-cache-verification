@@ -31,6 +31,7 @@ def _comparison() -> dict[str, Any]:
     normal_off = _load("04-loadtest-cache-off.json")
     peak_on = _load("09-peak-cache-on.json")
     peak_off = _load("10-peak-cache-off.json")
+    peak_multirun = _load("11-peak-multirun-summary.json")
     invalidation = _load("06-invalidation.json")
     protections = _load("07-protections.json")
 
@@ -96,6 +97,7 @@ def _comparison() -> dict[str, Any]:
                 ),
             },
         },
+        "peak_profile_multirun": peak_multirun,
         "invalidation": invalidation["points"],
         "protections": {
             "penetration": protections["penetration"],
@@ -111,10 +113,8 @@ def _render(payload: dict[str, Any]) -> str:
     on = n["cache_on"]
     off = n["cache_off"]
     d = n["derived"]
-    p = payload["peak_profile"]
-    pon = p["cache_on"]
-    poff = p["cache_off"]
-    pd = p["derived"]
+    pm = payload["peak_profile_multirun"]
+    pmd = pm["paired_p95_delta_pct_cache_on_vs_off"]
     inv = payload["invalidation"]
     pro = payload["protections"]
 
@@ -146,8 +146,8 @@ def _render(payload: dict[str, Any]) -> str:
     lines = [
         "# Redis 缓存策略验证报告 · S4-PERF-011",
         "",
-        f"> 生成时间：{payload['generated_at']}；所有数字来自 `evidence/` 下的原始 JSON/CSV，报告由脚本回填，未手工改写。",
-        "> 数据全部为虚构演示数据，不包含客户名称、真实会员企业或个人信息。",
+        f"> 生成时间：{payload['generated_at']}；单轮实测数字由 `evidence/` 下原始 JSON/CSV 回填；8 轮峰值结果来自 `evidence/11-peak-multirun-summary.json`，由 `scripts/summarize_peak_repeats.py` 从逐轮 JSON 汇总。",
+        "> 8 轮汇总含逐轮统计值、seed 与启动顺序，可独立重算；逐请求样本未纳入仓库。数据全部为虚构演示数据，不包含客户名称、真实会员企业或个人信息。",
         "",
         "## 0. 结论摘要",
         "",
@@ -156,7 +156,7 @@ def _render(payload: dict[str, Any]) -> str:
         f"3. **失效时延**：4 个缓存点各 30 次「改数据 → 轮询读」全部在 {max(v['observed_response_to_new_value_ms']['max'] for v in inv.values()):.3f} ms 内读到新值（P95 最大 {max(v['observed_response_to_new_value_ms']['p95'] for v in inv.values()):.3f} ms）；服务端「commit → DEL 完成」P95 最大 {max(v['server_commit_to_del_ms']['p95'] for v in inv.values()):.3f} ms。",
         f"4. **穿透防护**：同一不存在字典项的 {pen_on['requests']} 次请求，缓存开启时 Bloom 前置拦截 {pen_on['bloom_guard_hits']} 次、数据库查询 0 次；缓存关闭时 {pen_off['requests']} 次请求产生 {pen_off['db_queries_total']} 次查询。",
         f"5. **击穿防护**：热点驾驶舱键删除后 100 个并发请求，缓存开启只回源 1 次（DB 查询合计 {stamp_on['db_queries_total']} 次，loads={stamp_on['loads']}，lock_waits={stamp_on['lock_waits']}，lock_timeouts={stamp_on['lock_timeouts']}）；缓存关闭为 {stamp_off['db_queries_total']} 次。",
-        f"6. **峰值敏感性**：24 并发、4,000 请求下，缓存仍把 RPS 从 {_fmt(poff['summary']['rps'])} 提升到 {_fmt(pon['summary']['rps'])}（{pd['rps_gain_pct']:+.2f}%）、P50 降低 {abs(pd['p50_reduction_pct']):.2f}%，但 P95 为 {_fmt(pon['summary']['latency_ms']['p95'])} ms（关闭 {_fmt(poff['summary']['latency_ms']['p95'])} ms，{pd['p95_change_pct']:+.2f}%）。单进程同步 Redis 访问在 24 并发下成为尾延迟瓶颈，不能把「缓存」当成万能扩容手段；改进建议见第 6 节。",
+        f"6. **峰值敏感性（8 轮汇总）**：24 并发、每轮 4,000 请求，使用不同 request seed 并轮换缓存开/关启动顺序。P50 中位数为 {_fmt(pm['cache_on']['p50_ms']['median'])}/{_fmt(pm['cache_off']['p50_ms']['median'])} ms（缓存开启降低 {abs(_pct(pm['cache_off']['p50_ms']['median'], pm['cache_on']['p50_ms']['median'])):.2f}%），RPS 中位数为 {_fmt(pm['cache_on']['rps']['median'])}/{_fmt(pm['cache_off']['rps']['median'])}（提升 {_pct(pm['cache_off']['rps']['median'], pm['cache_on']['rps']['median']):.2f}%），DB 查询总数为 0 vs {pm['cache_off']['db_queries_total_per_round']['min']:,}–{pm['cache_off']['db_queries_total_per_round']['max']:,}。P95 中位数为 {_fmt(pm['cache_on']['p95_ms']['median'])}/{_fmt(pm['cache_off']['p95_ms']['median'])} ms；逐轮配对差值中位数 {pmd['median']:+.2f}%，范围 {pmd['min']:+.2f}% 至 {pmd['max']:+.2f}%。差值随启动顺序分组而异，因此 P95 仅作波动观察，不构成稳定回归结论；详见第 3.3、6 节。",
         "",
         "## 1. 测试环境与数据",
         "",
@@ -210,18 +210,22 @@ def _render(payload: dict[str, Any]) -> str:
         "|---|---:|---:|---:|---:|---:|",
         *endpoint_rows,
         "",
-        "### 3.3 峰值敏感性（24 并发、4,000 请求）",
+        "### 3.3 峰值敏感性（24 并发、每轮 4,000 请求，共 8 轮）",
         "",
-        "| 指标 | 缓存开启 | 缓存关闭 | 变化 |",
-        "|---|---:|---:|---:|",
-        f"| RPS | {_fmt(pon['summary']['rps'])} | {_fmt(poff['summary']['rps'])} | {pd['rps_gain_pct']:+.2f}% |",
-        f"| P50 | {_fmt(pon['summary']['latency_ms']['p50'])} ms | {_fmt(poff['summary']['latency_ms']['p50'])} ms | {pd['p50_reduction_pct']:+.2f}% |",
-        f"| P95 | {_fmt(pon['summary']['latency_ms']['p95'])} ms | {_fmt(poff['summary']['latency_ms']['p95'])} ms | {pd['p95_change_pct']:+.2f}% |",
-        f"| P99 | {_fmt(pon['summary']['latency_ms']['p99'])} ms | {_fmt(poff['summary']['latency_ms']['p99'])} ms | — |",
-        f"| 数据库查询/请求 | {_fmt(pon['summary']['db_queries_per_request'])} | {_fmt(poff['summary']['db_queries_per_request'])} | — |",
-        f"| PG `blks_hit` 增量 | {pon['postgres_delta']['database']['blks_hit']:,} | {poff['postgres_delta']['database']['blks_hit']:,} | — |",
+        "**方法与统计口径**：8 轮使用不同 request seed，并轮换缓存开启/关闭的先后顺序；缓存开启先跑 5 轮，缓存关闭先跑 3 轮。P95 轮间范围分别取缓存开启/关闭各 8 个测量值的最小值至最大值；配对差值按每轮 `(cache_on_p95 / cache_off_p95 - 1) × 100%` 计算后再汇总。",
         "",
-        "**解读**：峰值下缓存仍降低 RPS 对应的数据库压力（查询/请求 0 vs 3.158），并改善 RPS 与 P50；但 P95 略升。原因是当前实现用同步 redis-py 在 FastAPI 线程池中访问 Redis，24 并发时线程/GIL 调度与压测客户端共机的 CPU 竞争放大了尾延迟。这是**单进程同步客户端**的容量问题，不是缓存策略本身无效。修复方向见第 6 节；在未修复前，不应以峰值 P95 单独否定缓存。",
+        "| 指标 | 缓存开启 | 缓存关闭 | 观察 |",
+        "|---|---:|---:|---|",
+        f"| RPS 中位数 | {_fmt(pm['cache_on']['rps']['median'])} | {_fmt(pm['cache_off']['rps']['median'])} | 提升 {_pct(pm['cache_off']['rps']['median'], pm['cache_on']['rps']['median']):.2f}% |",
+        f"| P50 中位数 | {_fmt(pm['cache_on']['p50_ms']['median'])} ms | {_fmt(pm['cache_off']['p50_ms']['median'])} ms | 降低 {abs(_pct(pm['cache_off']['p50_ms']['median'], pm['cache_on']['p50_ms']['median'])):.2f}% |",
+        f"| P95 中位数（轮间范围） | {_fmt(pm['cache_on']['p95_ms']['median'])} ms（{pm['cache_on']['p95_ms']['min']:.3f}–{pm['cache_on']['p95_ms']['max']:.3f}） | {_fmt(pm['cache_off']['p95_ms']['median'])} ms（{pm['cache_off']['p95_ms']['min']:.3f}–{pm['cache_off']['p95_ms']['max']:.3f}） | 配对差值中位数 {pmd['median']:+.2f}%；范围 {pmd['min']:+.2f}% 至 {pmd['max']:+.2f}% |",
+        f"| DB 查询总数/轮 | 0 | {pm['cache_off']['db_queries_total_per_round']['min']:,}–{pm['cache_off']['db_queries_total_per_round']['max']:,} | 缓存开启各轮均为 0 |",
+        "",
+        f"**解读**：P95 配对差值跨越正负区间，且按启动顺序分组后方向不同：缓存开启先跑 {pmd['median_by_start_order']['cache_on_first']['rounds']} 轮的差值中位数为 {pmd['median_by_start_order']['cache_on_first']['median']:+.2f}%，缓存关闭先跑 {pmd['median_by_start_order']['cache_off_first']['rounds']} 轮为 {pmd['median_by_start_order']['cache_off_first']['median']:+.2f}%。缓存关闭侧 P95 范围（{pm['cache_off']['p95_ms']['min']:.3f}–{pm['cache_off']['p95_ms']['max']:.3f} ms）明显宽于缓存开启侧（{pm['cache_on']['p95_ms']['min']:.3f}–{pm['cache_on']['p95_ms']['max']:.3f} ms）。这些观测提示启动顺序/运行时状态影响差值，但不足以判定因果；不能据此认定缓存开启造成稳定的尾延迟回归。较稳定的方向是 P50 中位数约降低 31%、RPS 中位数约提升 18%，且缓存开启时 DB 查询为 0。",
+        "",
+        f"**单轮结果定位**：仓库此前单轮配对差值为 {pm['single_run_context']['repository_report']['paired_delta_pct']:+.2f}%，另一次独立单轮复测为 {pm['single_run_context']['independent_retest']['paired_delta_pct']:+.2f}%；二者均落在本次 8 轮配对差值范围内，不应单独作为峰值 P95 结论。",
+        "",
+        "**数据来源边界**：8 轮汇总见 `evidence/11-peak-multirun-summary.json`；`runs` 数组含逐轮 P50/P95/P99/RPS/DB、seed 与启动顺序，可由 `scripts/summarize_peak_repeats.py` 重算。逐请求样本未纳入仓库，历史单轮样本见 `evidence/09/10`。",
         "",
         "## 4. 数据修改后读到新值的时间",
         "",
@@ -246,7 +250,7 @@ def _render(payload: dict[str, Any]) -> str:
         "## 6. 发现的问题与改进建议",
         "",
         "1. **commit 与 DEL 不是原子操作**（优先级 P1）：当前实现提交成功后同步 `DEL`；若进程在两者之间崩溃或 Redis 瞬时不可用，旧值会保留到 TTL 到期（字典 15 分钟、首页 5 分钟、驾驶舱 10 分钟、权限 30 分钟）。建议改为事务性 outbox / CDC 事件 + 带重试的失效消费者，并对 `cache_errors`、失效失败、陈旧读告警。",
-        "2. **峰值尾延迟受同步 Redis 客户端限制**（P1）：24 并发下 P95 略升。建议改用 `redis.asyncio`、把读路径改为 async，或在应用进程内加 L1 缓存并用 Redis Pub/Sub 广播失效；多 worker 部署时同时采集每进程命中率。L1 会增加失效链路，必须与第 1 点的可靠失效一起做。",
+        "2. **峰值 P95 对测试顺序敏感，暂不能归因于缓存回归**：8 轮峰值配对差值为 -20.50% 至 +40.82%（中位 -1.58%），启动顺序分组后的中位数方向不同。建议保留逐轮 seed 与原始 JSON、平衡或随机化执行顺序，并尽可能将压测客户端与服务端隔离；在受控测试稳定复现前，不把 P95 变化归因于同步 Redis 客户端。若后续数据确认尾延迟问题，再评估 `redis.asyncio` 等方案。",
         "3. **穿透防护的 Bloom 重建成本**：字典项新增/删除会删 Bloom，下一次查询重建需要读全部编码。建议部署时预热 Bloom，或改为可增量维护的计数 Bloom/布谷鸟过滤器；同时保留负缓存兜底。",
         "4. **驾驶舱数据库成本仍高**：缓存关闭时 3 条聚合查询/请求、约 175 个共享缓冲区命中/请求。建议把月度指标做成物化视图/预聚合表，再用缓存承载读流量；缓存不能替代查询优化。",
         "5. **冷启动**：Redis 清空或发布后首波请求会同时回源。建议发布后异步预热四类热键（按站点/账期/用户），并给预热任务限速。",
@@ -259,7 +263,7 @@ def _render(payload: dict[str, Any]) -> str:
         "| 验收标准 | 交付位置 | 结果 |",
         "|---|---|---|",
         "| 1. 缓存点清单写明键规则与过期时间 | `docs/cache-points.md`、`evidence/02-cache-points.json`、`/api/admin/cache/points` | 4 个业务缓存点 + 3 类辅助键（负缓存/Bloom/单飞锁），键规则/TTL/失效/防护齐全 |",
-        "| 2. 开启与关闭缓存的 P95 与数据库负载对比 | 本报告第 3 节、`evidence/03`、`04`、`09`、`10`、`05-loadtest-comparison.json` | 常态 P95 3.933 vs 8.591 ms；DB 查询 0 vs 25,207；峰值敏感性已披露 |",
+        "| 2. 开启与关闭缓存的 P95 与数据库负载对比 | 本报告第 3 节、`evidence/03`、`04`、`09`、`10`、`11-peak-multirun-summary.json`、`05-loadtest-comparison.json` | 常态 P95 3.933 vs 8.591 ms、DB 查询 0 vs 25,207；峰值 8 轮 P95 中位数/范围与启动顺序敏感性已披露 |",
         "| 3. 数据修改后读取到新值的时间有实测记录 | 本报告第 4 节、`evidence/06-invalidation.csv`、`evidence/06-invalidation.json` | 4 点各 30 次，120/120 命中新值；服务端 P95 ≤0.177 ms |",
         "",
         "## 8. 复现命令",
@@ -288,6 +292,7 @@ def _render(payload: dict[str, Any]) -> str:
         "",
         "# 6) 单测与报告回填",
         "TEST_DATABASE_URL='postgresql+psycopg://clawhunt@127.0.0.1:55432/clawhunt_2984_test' REDIS_URL='redis://127.0.0.1:56379/15' .venv/bin/python -m pytest",
+        ".venv/bin/python scripts/summarize_peak_repeats.py --input-dir /tmp --output evidence/11-peak-multirun-summary.json",
         ".venv/bin/python scripts/build_report.py",
         "```",
         "",
@@ -303,7 +308,8 @@ def _render(payload: dict[str, Any]) -> str:
         "| `evidence/06-invalidation.json` / `.csv` | 4 个缓存点 ×30 次失效时延原始记录 |",
         "| `evidence/07-protections.json` | 穿透/负缓存/击穿端到端对照 |",
         "| `evidence/08-smoke.log` | 运行中服务冒烟输出（四点键规则/TTL、响应头、Bloom 拦截） |",
-        "| `evidence/09-peak-cache-on.json` / `10-peak-cache-off.json` | 24 并发峰值敏感性原始数据 |",
+        "| `evidence/09-peak-cache-on.json` / `10-peak-cache-off.json` | 原始单轮 24 并发峰值数据（保留作历史单轮观测） |",
+        "| `evidence/11-peak-multirun-summary.json` | 8 轮峰值汇总（含逐轮统计值、seed 与启动顺序；逐请求样本未纳入） |",
         "",
         "## 10. 边界与未做事项",
         "",
