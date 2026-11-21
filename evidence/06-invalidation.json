@@ -1,0 +1,1884 @@
+{
+  "generated_at": "2026-11-21T13:20:33.400583+00:00",
+  "iterations_per_point": 30,
+  "points": {
+    "tax.dict.tree": {
+      "observed_response_to_new_value_ms": {
+        "count": 30,
+        "min": 3.089,
+        "p50": 3.24,
+        "p95": 4.001,
+        "max": 4.34,
+        "mean": 3.388
+      },
+      "server_commit_to_del_ms": {
+        "count": 30,
+        "min": 0.121,
+        "p50": 0.141,
+        "p95": 0.177,
+        "max": 0.209,
+        "mean": 0.147
+      },
+      "all_matched": true
+    },
+    "site.home": {
+      "observed_response_to_new_value_ms": {
+        "count": 30,
+        "min": 2.619,
+        "p50": 2.813,
+        "p95": 3.673,
+        "max": 3.683,
+        "mean": 2.948
+      },
+      "server_commit_to_del_ms": {
+        "count": 30,
+        "min": 0.125,
+        "p50": 0.137,
+        "p95": 0.164,
+        "max": 0.174,
+        "mean": 0.142
+      },
+      "all_matched": true
+    },
+    "dashboard.metrics": {
+      "observed_response_to_new_value_ms": {
+        "count": 30,
+        "min": 3.444,
+        "p50": 3.664,
+        "p95": 4.756,
+        "max": 4.857,
+        "mean": 3.783
+      },
+      "server_commit_to_del_ms": {
+        "count": 30,
+        "min": 0.118,
+        "p50": 0.133,
+        "p95": 0.162,
+        "max": 0.163,
+        "mean": 0.137
+      },
+      "all_matched": true
+    },
+    "iam.perms": {
+      "observed_response_to_new_value_ms": {
+        "count": 30,
+        "min": 2.008,
+        "p50": 2.183,
+        "p95": 2.406,
+        "max": 2.436,
+        "mean": 2.188
+      },
+      "server_commit_to_del_ms": {
+        "count": 30,
+        "min": 0.123,
+        "p50": 0.136,
+        "p95": 0.171,
+        "max": 0.172,
+        "mean": 0.141
+      },
+      "all_matched": true
+    }
+  },
+  "records": [
+    {
+      "point": "tax.dict.tree",
+      "iteration": 1,
+      "write_ms": 3.578,
+      "server_commit_to_del_ms": 0.177,
+      "observed_response_to_new_value_ms": 4.34,
+      "invalidated_keys": 1,
+      "baseline": "二级产业 01-01",
+      "observed_new_value": "失效实测标签 0000",
+      "matched": true
+    },
+    {
+      "point": "tax.dict.tree",
+      "iteration": 2,
+      "write_ms": 2.57,
+      "server_commit_to_del_ms": 0.169,
+      "observed_response_to_new_value_ms": 3.684,
+      "invalidated_keys": 1,
+      "baseline": "失效实测标签 0000",
+      "observed_new_value": "失效实测标签 0001",
+      "matched": true
+    },
+    {
+      "point": "tax.dict.tree",
+      "iteration": 3,
+      "write_ms": 2.512,
+      "server_commit_to_del_ms": 0.167,
+      "observed_response_to_new_value_ms": 4.001,
+      "invalidated_keys": 1,
+      "baseline": "失效实测标签 0001",
+      "observed_new_value": "失效实测标签 0002",
+      "matched": true
+    },
+    {
+      "point": "tax.dict.tree",
+      "iteration": 4,
+      "write_ms": 2.31,
+      "server_commit_to_del_ms": 0.14,
+      "observed_response_to_new_value_ms": 3.745,
+      "invalidated_keys": 1,
+      "baseline": "失效实测标签 0002",
+      "observed_new_value": "失效实测标签 0003",
+      "matched": true
+    },
+    {
+      "point": "tax.dict.tree",
+      "iteration": 5,
+      "write_ms": 2.292,
+      "server_commit_to_del_ms": 0.134,
+      "observed_response_to_new_value_ms": 3.925,
+      "invalidated_keys": 1,
+      "baseline": "失效实测标签 0003",
+      "observed_new_value": "失效实测标签 0004",
+      "matched": true
+    },
+    {
+      "point": "tax.dict.tree",
+      "iteration": 6,
+      "write_ms": 2.272,
+      "server_commit_to_del_ms": 0.141,
+      "observed_response_to_new_value_ms": 3.41,
+      "invalidated_keys": 1,
+      "baseline": "失效实测标签 0004",
+      "observed_new_value": "失效实测标签 0005",
+      "matched": true
+    },
+    {
+      "point": "tax.dict.tree",
+      "iteration": 7,
+      "write_ms": 2.107,
+      "server_commit_to_del_ms": 0.136,
+      "observed_response_to_new_value_ms": 3.738,
+      "invalidated_keys": 1,
+      "baseline": "失效实测标签 0005",
+      "observed_new_value": "失效实测标签 0006",
+      "matched": true
+    },
+    {
+      "point": "tax.dict.tree",
+      "iteration": 8,
+      "write_ms": 2.319,
+      "server_commit_to_del_ms": 0.163,
+      "observed_response_to_new_value_ms": 3.626,
+      "invalidated_keys": 1,
+      "baseline": "失效实测标签 0006",
+      "observed_new_value": "失效实测标签 0007",
+      "matched": true
+    },
+    {
+      "point": "tax.dict.tree",
+      "iteration": 9,
+      "write_ms": 1.797,
+      "server_commit_to_del_ms": 0.137,
+      "observed_response_to_new_value_ms": 3.089,
+      "invalidated_keys": 1,
+      "baseline": "失效实测标签 0007",
+      "observed_new_value": "失效实测标签 0008",
+      "matched": true
+    },
+    {
+      "point": "tax.dict.tree",
+      "iteration": 10,
+      "write_ms": 1.979,
+      "server_commit_to_del_ms": 0.17,
+      "observed_response_to_new_value_ms": 3.385,
+      "invalidated_keys": 1,
+      "baseline": "失效实测标签 0008",
+      "observed_new_value": "失效实测标签 0009",
+      "matched": true
+    },
+    {
+      "point": "tax.dict.tree",
+      "iteration": 11,
+      "write_ms": 1.781,
+      "server_commit_to_del_ms": 0.131,
+      "observed_response_to_new_value_ms": 3.257,
+      "invalidated_keys": 1,
+      "baseline": "失效实测标签 0009",
+      "observed_new_value": "失效实测标签 0010",
+      "matched": true
+    },
+    {
+      "point": "tax.dict.tree",
+      "iteration": 12,
+      "write_ms": 1.742,
+      "server_commit_to_del_ms": 0.141,
+      "observed_response_to_new_value_ms": 3.408,
+      "invalidated_keys": 1,
+      "baseline": "失效实测标签 0010",
+      "observed_new_value": "失效实测标签 0011",
+      "matched": true
+    },
+    {
+      "point": "tax.dict.tree",
+      "iteration": 13,
+      "write_ms": 1.818,
+      "server_commit_to_del_ms": 0.143,
+      "observed_response_to_new_value_ms": 3.309,
+      "invalidated_keys": 1,
+      "baseline": "失效实测标签 0011",
+      "observed_new_value": "失效实测标签 0012",
+      "matched": true
+    },
+    {
+      "point": "tax.dict.tree",
+      "iteration": 14,
+      "write_ms": 1.838,
+      "server_commit_to_del_ms": 0.142,
+      "observed_response_to_new_value_ms": 3.235,
+      "invalidated_keys": 1,
+      "baseline": "失效实测标签 0012",
+      "observed_new_value": "失效实测标签 0013",
+      "matched": true
+    },
+    {
+      "point": "tax.dict.tree",
+      "iteration": 15,
+      "write_ms": 1.872,
+      "server_commit_to_del_ms": 0.159,
+      "observed_response_to_new_value_ms": 3.208,
+      "invalidated_keys": 1,
+      "baseline": "失效实测标签 0013",
+      "observed_new_value": "失效实测标签 0014",
+      "matched": true
+    },
+    {
+      "point": "tax.dict.tree",
+      "iteration": 16,
+      "write_ms": 1.709,
+      "server_commit_to_del_ms": 0.126,
+      "observed_response_to_new_value_ms": 3.239,
+      "invalidated_keys": 1,
+      "baseline": "失效实测标签 0014",
+      "observed_new_value": "失效实测标签 0015",
+      "matched": true
+    },
+    {
+      "point": "tax.dict.tree",
+      "iteration": 17,
+      "write_ms": 1.73,
+      "server_commit_to_del_ms": 0.138,
+      "observed_response_to_new_value_ms": 3.339,
+      "invalidated_keys": 1,
+      "baseline": "失效实测标签 0015",
+      "observed_new_value": "失效实测标签 0016",
+      "matched": true
+    },
+    {
+      "point": "tax.dict.tree",
+      "iteration": 18,
+      "write_ms": 1.778,
+      "server_commit_to_del_ms": 0.142,
+      "observed_response_to_new_value_ms": 3.165,
+      "invalidated_keys": 1,
+      "baseline": "失效实测标签 0016",
+      "observed_new_value": "失效实测标签 0017",
+      "matched": true
+    },
+    {
+      "point": "tax.dict.tree",
+      "iteration": 19,
+      "write_ms": 1.793,
+      "server_commit_to_del_ms": 0.14,
+      "observed_response_to_new_value_ms": 3.164,
+      "invalidated_keys": 1,
+      "baseline": "失效实测标签 0017",
+      "observed_new_value": "失效实测标签 0018",
+      "matched": true
+    },
+    {
+      "point": "tax.dict.tree",
+      "iteration": 20,
+      "write_ms": 1.927,
+      "server_commit_to_del_ms": 0.162,
+      "observed_response_to_new_value_ms": 3.229,
+      "invalidated_keys": 1,
+      "baseline": "失效实测标签 0018",
+      "observed_new_value": "失效实测标签 0019",
+      "matched": true
+    },
+    {
+      "point": "tax.dict.tree",
+      "iteration": 21,
+      "write_ms": 1.777,
+      "server_commit_to_del_ms": 0.136,
+      "observed_response_to_new_value_ms": 3.244,
+      "invalidated_keys": 1,
+      "baseline": "失效实测标签 0019",
+      "observed_new_value": "失效实测标签 0020",
+      "matched": true
+    },
+    {
+      "point": "tax.dict.tree",
+      "iteration": 22,
+      "write_ms": 1.724,
+      "server_commit_to_del_ms": 0.139,
+      "observed_response_to_new_value_ms": 3.508,
+      "invalidated_keys": 1,
+      "baseline": "失效实测标签 0020",
+      "observed_new_value": "失效实测标签 0021",
+      "matched": true
+    },
+    {
+      "point": "tax.dict.tree",
+      "iteration": 23,
+      "write_ms": 1.761,
+      "server_commit_to_del_ms": 0.134,
+      "observed_response_to_new_value_ms": 3.194,
+      "invalidated_keys": 1,
+      "baseline": "失效实测标签 0021",
+      "observed_new_value": "失效实测标签 0022",
+      "matched": true
+    },
+    {
+      "point": "tax.dict.tree",
+      "iteration": 24,
+      "write_ms": 1.735,
+      "server_commit_to_del_ms": 0.132,
+      "observed_response_to_new_value_ms": 3.103,
+      "invalidated_keys": 1,
+      "baseline": "失效实测标签 0022",
+      "observed_new_value": "失效实测标签 0023",
+      "matched": true
+    },
+    {
+      "point": "tax.dict.tree",
+      "iteration": 25,
+      "write_ms": 1.91,
+      "server_commit_to_del_ms": 0.161,
+      "observed_response_to_new_value_ms": 3.24,
+      "invalidated_keys": 1,
+      "baseline": "失效实测标签 0023",
+      "observed_new_value": "失效实测标签 0024",
+      "matched": true
+    },
+    {
+      "point": "tax.dict.tree",
+      "iteration": 26,
+      "write_ms": 1.737,
+      "server_commit_to_del_ms": 0.142,
+      "observed_response_to_new_value_ms": 3.141,
+      "invalidated_keys": 1,
+      "baseline": "失效实测标签 0024",
+      "observed_new_value": "失效实测标签 0025",
+      "matched": true
+    },
+    {
+      "point": "tax.dict.tree",
+      "iteration": 27,
+      "write_ms": 1.67,
+      "server_commit_to_del_ms": 0.128,
+      "observed_response_to_new_value_ms": 3.178,
+      "invalidated_keys": 1,
+      "baseline": "失效实测标签 0025",
+      "observed_new_value": "失效实测标签 0026",
+      "matched": true
+    },
+    {
+      "point": "tax.dict.tree",
+      "iteration": 28,
+      "write_ms": 1.812,
+      "server_commit_to_del_ms": 0.15,
+      "observed_response_to_new_value_ms": 3.154,
+      "invalidated_keys": 1,
+      "baseline": "失效实测标签 0026",
+      "observed_new_value": "失效实测标签 0027",
+      "matched": true
+    },
+    {
+      "point": "tax.dict.tree",
+      "iteration": 29,
+      "write_ms": 1.739,
+      "server_commit_to_del_ms": 0.121,
+      "observed_response_to_new_value_ms": 3.21,
+      "invalidated_keys": 1,
+      "baseline": "失效实测标签 0027",
+      "observed_new_value": "失效实测标签 0028",
+      "matched": true
+    },
+    {
+      "point": "tax.dict.tree",
+      "iteration": 30,
+      "write_ms": 2.007,
+      "server_commit_to_del_ms": 0.209,
+      "observed_response_to_new_value_ms": 3.16,
+      "invalidated_keys": 1,
+      "baseline": "失效实测标签 0028",
+      "observed_new_value": "失效实测标签 0029",
+      "matched": true
+    },
+    {
+      "point": "site.home",
+      "iteration": 1,
+      "write_ms": 2.465,
+      "server_commit_to_del_ms": 0.148,
+      "observed_response_to_new_value_ms": 3.667,
+      "invalidated_keys": 1,
+      "baseline": [
+        "主空间动态 01",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "observed_new_value": [
+        "失效实测首页位 0000",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "matched": true
+    },
+    {
+      "point": "site.home",
+      "iteration": 2,
+      "write_ms": 1.748,
+      "server_commit_to_del_ms": 0.135,
+      "observed_response_to_new_value_ms": 3.502,
+      "invalidated_keys": 1,
+      "baseline": [
+        "失效实测首页位 0000",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "observed_new_value": [
+        "失效实测首页位 0001",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "matched": true
+    },
+    {
+      "point": "site.home",
+      "iteration": 3,
+      "write_ms": 1.823,
+      "server_commit_to_del_ms": 0.151,
+      "observed_response_to_new_value_ms": 3.07,
+      "invalidated_keys": 1,
+      "baseline": [
+        "失效实测首页位 0001",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "observed_new_value": [
+        "失效实测首页位 0002",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "matched": true
+    },
+    {
+      "point": "site.home",
+      "iteration": 4,
+      "write_ms": 1.756,
+      "server_commit_to_del_ms": 0.132,
+      "observed_response_to_new_value_ms": 3.673,
+      "invalidated_keys": 1,
+      "baseline": [
+        "失效实测首页位 0002",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "observed_new_value": [
+        "失效实测首页位 0003",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "matched": true
+    },
+    {
+      "point": "site.home",
+      "iteration": 5,
+      "write_ms": 1.688,
+      "server_commit_to_del_ms": 0.13,
+      "observed_response_to_new_value_ms": 2.916,
+      "invalidated_keys": 1,
+      "baseline": [
+        "失效实测首页位 0003",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "observed_new_value": [
+        "失效实测首页位 0004",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "matched": true
+    },
+    {
+      "point": "site.home",
+      "iteration": 6,
+      "write_ms": 1.859,
+      "server_commit_to_del_ms": 0.136,
+      "observed_response_to_new_value_ms": 3.002,
+      "invalidated_keys": 1,
+      "baseline": [
+        "失效实测首页位 0004",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "observed_new_value": [
+        "失效实测首页位 0005",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "matched": true
+    },
+    {
+      "point": "site.home",
+      "iteration": 7,
+      "write_ms": 1.747,
+      "server_commit_to_del_ms": 0.143,
+      "observed_response_to_new_value_ms": 3.373,
+      "invalidated_keys": 1,
+      "baseline": [
+        "失效实测首页位 0005",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "observed_new_value": [
+        "失效实测首页位 0006",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "matched": true
+    },
+    {
+      "point": "site.home",
+      "iteration": 8,
+      "write_ms": 1.697,
+      "server_commit_to_del_ms": 0.144,
+      "observed_response_to_new_value_ms": 3.683,
+      "invalidated_keys": 1,
+      "baseline": [
+        "失效实测首页位 0006",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "observed_new_value": [
+        "失效实测首页位 0007",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "matched": true
+    },
+    {
+      "point": "site.home",
+      "iteration": 9,
+      "write_ms": 1.634,
+      "server_commit_to_del_ms": 0.14,
+      "observed_response_to_new_value_ms": 2.773,
+      "invalidated_keys": 1,
+      "baseline": [
+        "失效实测首页位 0007",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "observed_new_value": [
+        "失效实测首页位 0008",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "matched": true
+    },
+    {
+      "point": "site.home",
+      "iteration": 10,
+      "write_ms": 1.583,
+      "server_commit_to_del_ms": 0.137,
+      "observed_response_to_new_value_ms": 2.709,
+      "invalidated_keys": 1,
+      "baseline": [
+        "失效实测首页位 0008",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "observed_new_value": [
+        "失效实测首页位 0009",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "matched": true
+    },
+    {
+      "point": "site.home",
+      "iteration": 11,
+      "write_ms": 1.573,
+      "server_commit_to_del_ms": 0.137,
+      "observed_response_to_new_value_ms": 3.013,
+      "invalidated_keys": 1,
+      "baseline": [
+        "失效实测首页位 0009",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "observed_new_value": [
+        "失效实测首页位 0010",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "matched": true
+    },
+    {
+      "point": "site.home",
+      "iteration": 12,
+      "write_ms": 1.627,
+      "server_commit_to_del_ms": 0.141,
+      "observed_response_to_new_value_ms": 2.813,
+      "invalidated_keys": 1,
+      "baseline": [
+        "失效实测首页位 0010",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "observed_new_value": [
+        "失效实测首页位 0011",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "matched": true
+    },
+    {
+      "point": "site.home",
+      "iteration": 13,
+      "write_ms": 1.65,
+      "server_commit_to_del_ms": 0.164,
+      "observed_response_to_new_value_ms": 3.17,
+      "invalidated_keys": 1,
+      "baseline": [
+        "失效实测首页位 0011",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "observed_new_value": [
+        "失效实测首页位 0012",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "matched": true
+    },
+    {
+      "point": "site.home",
+      "iteration": 14,
+      "write_ms": 1.677,
+      "server_commit_to_del_ms": 0.133,
+      "observed_response_to_new_value_ms": 2.999,
+      "invalidated_keys": 1,
+      "baseline": [
+        "失效实测首页位 0012",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "observed_new_value": [
+        "失效实测首页位 0013",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "matched": true
+    },
+    {
+      "point": "site.home",
+      "iteration": 15,
+      "write_ms": 1.561,
+      "server_commit_to_del_ms": 0.131,
+      "observed_response_to_new_value_ms": 2.672,
+      "invalidated_keys": 1,
+      "baseline": [
+        "失效实测首页位 0013",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "observed_new_value": [
+        "失效实测首页位 0014",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "matched": true
+    },
+    {
+      "point": "site.home",
+      "iteration": 16,
+      "write_ms": 1.573,
+      "server_commit_to_del_ms": 0.141,
+      "observed_response_to_new_value_ms": 2.809,
+      "invalidated_keys": 1,
+      "baseline": [
+        "失效实测首页位 0014",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "observed_new_value": [
+        "失效实测首页位 0015",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "matched": true
+    },
+    {
+      "point": "site.home",
+      "iteration": 17,
+      "write_ms": 1.458,
+      "server_commit_to_del_ms": 0.125,
+      "observed_response_to_new_value_ms": 2.74,
+      "invalidated_keys": 1,
+      "baseline": [
+        "失效实测首页位 0015",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "observed_new_value": [
+        "失效实测首页位 0016",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "matched": true
+    },
+    {
+      "point": "site.home",
+      "iteration": 18,
+      "write_ms": 1.782,
+      "server_commit_to_del_ms": 0.154,
+      "observed_response_to_new_value_ms": 2.802,
+      "invalidated_keys": 1,
+      "baseline": [
+        "失效实测首页位 0016",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "observed_new_value": [
+        "失效实测首页位 0017",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "matched": true
+    },
+    {
+      "point": "site.home",
+      "iteration": 19,
+      "write_ms": 1.569,
+      "server_commit_to_del_ms": 0.136,
+      "observed_response_to_new_value_ms": 2.631,
+      "invalidated_keys": 1,
+      "baseline": [
+        "失效实测首页位 0017",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "observed_new_value": [
+        "失效实测首页位 0018",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "matched": true
+    },
+    {
+      "point": "site.home",
+      "iteration": 20,
+      "write_ms": 1.57,
+      "server_commit_to_del_ms": 0.142,
+      "observed_response_to_new_value_ms": 2.842,
+      "invalidated_keys": 1,
+      "baseline": [
+        "失效实测首页位 0018",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "observed_new_value": [
+        "失效实测首页位 0019",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "matched": true
+    },
+    {
+      "point": "site.home",
+      "iteration": 21,
+      "write_ms": 1.83,
+      "server_commit_to_del_ms": 0.174,
+      "observed_response_to_new_value_ms": 2.839,
+      "invalidated_keys": 1,
+      "baseline": [
+        "失效实测首页位 0019",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "observed_new_value": [
+        "失效实测首页位 0020",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "matched": true
+    },
+    {
+      "point": "site.home",
+      "iteration": 22,
+      "write_ms": 1.549,
+      "server_commit_to_del_ms": 0.129,
+      "observed_response_to_new_value_ms": 2.726,
+      "invalidated_keys": 1,
+      "baseline": [
+        "失效实测首页位 0020",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "observed_new_value": [
+        "失效实测首页位 0021",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "matched": true
+    },
+    {
+      "point": "site.home",
+      "iteration": 23,
+      "write_ms": 1.509,
+      "server_commit_to_del_ms": 0.132,
+      "observed_response_to_new_value_ms": 2.851,
+      "invalidated_keys": 1,
+      "baseline": [
+        "失效实测首页位 0021",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "observed_new_value": [
+        "失效实测首页位 0022",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "matched": true
+    },
+    {
+      "point": "site.home",
+      "iteration": 24,
+      "write_ms": 1.643,
+      "server_commit_to_del_ms": 0.142,
+      "observed_response_to_new_value_ms": 2.806,
+      "invalidated_keys": 1,
+      "baseline": [
+        "失效实测首页位 0022",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "observed_new_value": [
+        "失效实测首页位 0023",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "matched": true
+    },
+    {
+      "point": "site.home",
+      "iteration": 25,
+      "write_ms": 1.501,
+      "server_commit_to_del_ms": 0.135,
+      "observed_response_to_new_value_ms": 2.765,
+      "invalidated_keys": 1,
+      "baseline": [
+        "失效实测首页位 0023",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "observed_new_value": [
+        "失效实测首页位 0024",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "matched": true
+    },
+    {
+      "point": "site.home",
+      "iteration": 26,
+      "write_ms": 1.536,
+      "server_commit_to_del_ms": 0.135,
+      "observed_response_to_new_value_ms": 2.836,
+      "invalidated_keys": 1,
+      "baseline": [
+        "失效实测首页位 0024",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "observed_new_value": [
+        "失效实测首页位 0025",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "matched": true
+    },
+    {
+      "point": "site.home",
+      "iteration": 27,
+      "write_ms": 1.742,
+      "server_commit_to_del_ms": 0.157,
+      "observed_response_to_new_value_ms": 2.72,
+      "invalidated_keys": 1,
+      "baseline": [
+        "失效实测首页位 0025",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "observed_new_value": [
+        "失效实测首页位 0026",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "matched": true
+    },
+    {
+      "point": "site.home",
+      "iteration": 28,
+      "write_ms": 1.55,
+      "server_commit_to_del_ms": 0.141,
+      "observed_response_to_new_value_ms": 2.619,
+      "invalidated_keys": 1,
+      "baseline": [
+        "失效实测首页位 0026",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "observed_new_value": [
+        "失效实测首页位 0027",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "matched": true
+    },
+    {
+      "point": "site.home",
+      "iteration": 29,
+      "write_ms": 1.546,
+      "server_commit_to_del_ms": 0.137,
+      "observed_response_to_new_value_ms": 2.656,
+      "invalidated_keys": 1,
+      "baseline": [
+        "失效实测首页位 0027",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "observed_new_value": [
+        "失效实测首页位 0028",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "matched": true
+    },
+    {
+      "point": "site.home",
+      "iteration": 30,
+      "write_ms": 1.826,
+      "server_commit_to_del_ms": 0.164,
+      "observed_response_to_new_value_ms": 2.757,
+      "invalidated_keys": 1,
+      "baseline": [
+        "失效实测首页位 0028",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "observed_new_value": [
+        "失效实测首页位 0029",
+        "主空间动态 02",
+        "主空间动态 03",
+        "主空间动态 04",
+        "主空间动态 05"
+      ],
+      "matched": true
+    },
+    {
+      "point": "dashboard.metrics",
+      "iteration": 1,
+      "write_ms": 2.324,
+      "server_commit_to_del_ms": 0.145,
+      "observed_response_to_new_value_ms": 4.201,
+      "invalidated_keys": 1,
+      "baseline": 2054060000,
+      "observed_new_value": 2054160000,
+      "matched": true
+    },
+    {
+      "point": "dashboard.metrics",
+      "iteration": 2,
+      "write_ms": 1.639,
+      "server_commit_to_del_ms": 0.14,
+      "observed_response_to_new_value_ms": 4.756,
+      "invalidated_keys": 1,
+      "baseline": 2054160000,
+      "observed_new_value": 2054260001,
+      "matched": true
+    },
+    {
+      "point": "dashboard.metrics",
+      "iteration": 3,
+      "write_ms": 1.783,
+      "server_commit_to_del_ms": 0.138,
+      "observed_response_to_new_value_ms": 3.826,
+      "invalidated_keys": 1,
+      "baseline": 2054260001,
+      "observed_new_value": 2054360003,
+      "matched": true
+    },
+    {
+      "point": "dashboard.metrics",
+      "iteration": 4,
+      "write_ms": 1.59,
+      "server_commit_to_del_ms": 0.126,
+      "observed_response_to_new_value_ms": 4.171,
+      "invalidated_keys": 1,
+      "baseline": 2054360003,
+      "observed_new_value": 2054460006,
+      "matched": true
+    },
+    {
+      "point": "dashboard.metrics",
+      "iteration": 5,
+      "write_ms": 2.125,
+      "server_commit_to_del_ms": 0.162,
+      "observed_response_to_new_value_ms": 4.027,
+      "invalidated_keys": 1,
+      "baseline": 2054460006,
+      "observed_new_value": 2054560010,
+      "matched": true
+    },
+    {
+      "point": "dashboard.metrics",
+      "iteration": 6,
+      "write_ms": 1.551,
+      "server_commit_to_del_ms": 0.118,
+      "observed_response_to_new_value_ms": 4.277,
+      "invalidated_keys": 1,
+      "baseline": 2054560010,
+      "observed_new_value": 2054660015,
+      "matched": true
+    },
+    {
+      "point": "dashboard.metrics",
+      "iteration": 7,
+      "write_ms": 1.607,
+      "server_commit_to_del_ms": 0.129,
+      "observed_response_to_new_value_ms": 4.857,
+      "invalidated_keys": 1,
+      "baseline": 2054660015,
+      "observed_new_value": 2054760021,
+      "matched": true
+    },
+    {
+      "point": "dashboard.metrics",
+      "iteration": 8,
+      "write_ms": 1.792,
+      "server_commit_to_del_ms": 0.148,
+      "observed_response_to_new_value_ms": 3.896,
+      "invalidated_keys": 1,
+      "baseline": 2054760021,
+      "observed_new_value": 2054860028,
+      "matched": true
+    },
+    {
+      "point": "dashboard.metrics",
+      "iteration": 9,
+      "write_ms": 1.561,
+      "server_commit_to_del_ms": 0.129,
+      "observed_response_to_new_value_ms": 3.51,
+      "invalidated_keys": 1,
+      "baseline": 2054860028,
+      "observed_new_value": 2054960036,
+      "matched": true
+    },
+    {
+      "point": "dashboard.metrics",
+      "iteration": 10,
+      "write_ms": 1.705,
+      "server_commit_to_del_ms": 0.161,
+      "observed_response_to_new_value_ms": 3.599,
+      "invalidated_keys": 1,
+      "baseline": 2054960036,
+      "observed_new_value": 2055060045,
+      "matched": true
+    },
+    {
+      "point": "dashboard.metrics",
+      "iteration": 11,
+      "write_ms": 1.523,
+      "server_commit_to_del_ms": 0.131,
+      "observed_response_to_new_value_ms": 3.552,
+      "invalidated_keys": 1,
+      "baseline": 2055060045,
+      "observed_new_value": 2055160055,
+      "matched": true
+    },
+    {
+      "point": "dashboard.metrics",
+      "iteration": 12,
+      "write_ms": 1.616,
+      "server_commit_to_del_ms": 0.133,
+      "observed_response_to_new_value_ms": 3.772,
+      "invalidated_keys": 1,
+      "baseline": 2055160055,
+      "observed_new_value": 2055260066,
+      "matched": true
+    },
+    {
+      "point": "dashboard.metrics",
+      "iteration": 13,
+      "write_ms": 1.637,
+      "server_commit_to_del_ms": 0.143,
+      "observed_response_to_new_value_ms": 3.499,
+      "invalidated_keys": 1,
+      "baseline": 2055260066,
+      "observed_new_value": 2055360078,
+      "matched": true
+    },
+    {
+      "point": "dashboard.metrics",
+      "iteration": 14,
+      "write_ms": 1.581,
+      "server_commit_to_del_ms": 0.133,
+      "observed_response_to_new_value_ms": 3.479,
+      "invalidated_keys": 1,
+      "baseline": 2055360078,
+      "observed_new_value": 2055460091,
+      "matched": true
+    },
+    {
+      "point": "dashboard.metrics",
+      "iteration": 15,
+      "write_ms": 1.553,
+      "server_commit_to_del_ms": 0.139,
+      "observed_response_to_new_value_ms": 3.74,
+      "invalidated_keys": 1,
+      "baseline": 2055460091,
+      "observed_new_value": 2055560105,
+      "matched": true
+    },
+    {
+      "point": "dashboard.metrics",
+      "iteration": 16,
+      "write_ms": 1.56,
+      "server_commit_to_del_ms": 0.132,
+      "observed_response_to_new_value_ms": 3.706,
+      "invalidated_keys": 1,
+      "baseline": 2055560105,
+      "observed_new_value": 2055660120,
+      "matched": true
+    },
+    {
+      "point": "dashboard.metrics",
+      "iteration": 17,
+      "write_ms": 1.596,
+      "server_commit_to_del_ms": 0.13,
+      "observed_response_to_new_value_ms": 3.691,
+      "invalidated_keys": 1,
+      "baseline": 2055660120,
+      "observed_new_value": 2055760136,
+      "matched": true
+    },
+    {
+      "point": "dashboard.metrics",
+      "iteration": 18,
+      "write_ms": 1.502,
+      "server_commit_to_del_ms": 0.131,
+      "observed_response_to_new_value_ms": 3.825,
+      "invalidated_keys": 1,
+      "baseline": 2055760136,
+      "observed_new_value": 2055860153,
+      "matched": true
+    },
+    {
+      "point": "dashboard.metrics",
+      "iteration": 19,
+      "write_ms": 1.612,
+      "server_commit_to_del_ms": 0.133,
+      "observed_response_to_new_value_ms": 3.46,
+      "invalidated_keys": 1,
+      "baseline": 2055860153,
+      "observed_new_value": 2055960171,
+      "matched": true
+    },
+    {
+      "point": "dashboard.metrics",
+      "iteration": 20,
+      "write_ms": 1.493,
+      "server_commit_to_del_ms": 0.128,
+      "observed_response_to_new_value_ms": 3.664,
+      "invalidated_keys": 1,
+      "baseline": 2055960171,
+      "observed_new_value": 2056060190,
+      "matched": true
+    },
+    {
+      "point": "dashboard.metrics",
+      "iteration": 21,
+      "write_ms": 1.746,
+      "server_commit_to_del_ms": 0.163,
+      "observed_response_to_new_value_ms": 3.69,
+      "invalidated_keys": 1,
+      "baseline": 2056060190,
+      "observed_new_value": 2056160210,
+      "matched": true
+    },
+    {
+      "point": "dashboard.metrics",
+      "iteration": 22,
+      "write_ms": 1.543,
+      "server_commit_to_del_ms": 0.135,
+      "observed_response_to_new_value_ms": 3.511,
+      "invalidated_keys": 1,
+      "baseline": 2056160210,
+      "observed_new_value": 2056260231,
+      "matched": true
+    },
+    {
+      "point": "dashboard.metrics",
+      "iteration": 23,
+      "write_ms": 1.516,
+      "server_commit_to_del_ms": 0.128,
+      "observed_response_to_new_value_ms": 3.475,
+      "invalidated_keys": 1,
+      "baseline": 2056260231,
+      "observed_new_value": 2056360253,
+      "matched": true
+    },
+    {
+      "point": "dashboard.metrics",
+      "iteration": 24,
+      "write_ms": 1.978,
+      "server_commit_to_del_ms": 0.15,
+      "observed_response_to_new_value_ms": 3.621,
+      "invalidated_keys": 1,
+      "baseline": 2056360253,
+      "observed_new_value": 2056460276,
+      "matched": true
+    },
+    {
+      "point": "dashboard.metrics",
+      "iteration": 25,
+      "write_ms": 1.583,
+      "server_commit_to_del_ms": 0.123,
+      "observed_response_to_new_value_ms": 3.444,
+      "invalidated_keys": 1,
+      "baseline": 2056460276,
+      "observed_new_value": 2056560300,
+      "matched": true
+    },
+    {
+      "point": "dashboard.metrics",
+      "iteration": 26,
+      "write_ms": 1.537,
+      "server_commit_to_del_ms": 0.131,
+      "observed_response_to_new_value_ms": 3.649,
+      "invalidated_keys": 1,
+      "baseline": 2056560300,
+      "observed_new_value": 2056660325,
+      "matched": true
+    },
+    {
+      "point": "dashboard.metrics",
+      "iteration": 27,
+      "write_ms": 1.741,
+      "server_commit_to_del_ms": 0.146,
+      "observed_response_to_new_value_ms": 3.639,
+      "invalidated_keys": 1,
+      "baseline": 2056660325,
+      "observed_new_value": 2056760351,
+      "matched": true
+    },
+    {
+      "point": "dashboard.metrics",
+      "iteration": 28,
+      "write_ms": 1.646,
+      "server_commit_to_del_ms": 0.133,
+      "observed_response_to_new_value_ms": 3.46,
+      "invalidated_keys": 1,
+      "baseline": 2056760351,
+      "observed_new_value": 2056860378,
+      "matched": true
+    },
+    {
+      "point": "dashboard.metrics",
+      "iteration": 29,
+      "write_ms": 1.55,
+      "server_commit_to_del_ms": 0.133,
+      "observed_response_to_new_value_ms": 3.907,
+      "invalidated_keys": 1,
+      "baseline": 2056860378,
+      "observed_new_value": 2056960406,
+      "matched": true
+    },
+    {
+      "point": "dashboard.metrics",
+      "iteration": 30,
+      "write_ms": 1.666,
+      "server_commit_to_del_ms": 0.141,
+      "observed_response_to_new_value_ms": 3.577,
+      "invalidated_keys": 1,
+      "baseline": 2056960406,
+      "observed_new_value": 2057060435,
+      "matched": true
+    },
+    {
+      "point": "iam.perms",
+      "iteration": 1,
+      "write_ms": 3.357,
+      "server_commit_to_del_ms": 0.143,
+      "observed_response_to_new_value_ms": 2.384,
+      "invalidated_keys": 1,
+      "baseline": [
+        "org_admin"
+      ],
+      "observed_new_value": [
+        "sales_lead"
+      ],
+      "matched": true
+    },
+    {
+      "point": "iam.perms",
+      "iteration": 2,
+      "write_ms": 2.247,
+      "server_commit_to_del_ms": 0.155,
+      "observed_response_to_new_value_ms": 2.191,
+      "invalidated_keys": 1,
+      "baseline": [
+        "sales_lead"
+      ],
+      "observed_new_value": [
+        "org_admin"
+      ],
+      "matched": true
+    },
+    {
+      "point": "iam.perms",
+      "iteration": 3,
+      "write_ms": 1.988,
+      "server_commit_to_del_ms": 0.13,
+      "observed_response_to_new_value_ms": 2.25,
+      "invalidated_keys": 1,
+      "baseline": [
+        "org_admin"
+      ],
+      "observed_new_value": [
+        "sales_lead"
+      ],
+      "matched": true
+    },
+    {
+      "point": "iam.perms",
+      "iteration": 4,
+      "write_ms": 1.996,
+      "server_commit_to_del_ms": 0.13,
+      "observed_response_to_new_value_ms": 2.14,
+      "invalidated_keys": 1,
+      "baseline": [
+        "sales_lead"
+      ],
+      "observed_new_value": [
+        "org_admin"
+      ],
+      "matched": true
+    },
+    {
+      "point": "iam.perms",
+      "iteration": 5,
+      "write_ms": 2.134,
+      "server_commit_to_del_ms": 0.152,
+      "observed_response_to_new_value_ms": 2.287,
+      "invalidated_keys": 1,
+      "baseline": [
+        "org_admin"
+      ],
+      "observed_new_value": [
+        "sales_lead"
+      ],
+      "matched": true
+    },
+    {
+      "point": "iam.perms",
+      "iteration": 6,
+      "write_ms": 2.05,
+      "server_commit_to_del_ms": 0.13,
+      "observed_response_to_new_value_ms": 2.117,
+      "invalidated_keys": 1,
+      "baseline": [
+        "sales_lead"
+      ],
+      "observed_new_value": [
+        "org_admin"
+      ],
+      "matched": true
+    },
+    {
+      "point": "iam.perms",
+      "iteration": 7,
+      "write_ms": 2.101,
+      "server_commit_to_del_ms": 0.133,
+      "observed_response_to_new_value_ms": 2.043,
+      "invalidated_keys": 1,
+      "baseline": [
+        "org_admin"
+      ],
+      "observed_new_value": [
+        "sales_lead"
+      ],
+      "matched": true
+    },
+    {
+      "point": "iam.perms",
+      "iteration": 8,
+      "write_ms": 2.139,
+      "server_commit_to_del_ms": 0.144,
+      "observed_response_to_new_value_ms": 2.436,
+      "invalidated_keys": 1,
+      "baseline": [
+        "sales_lead"
+      ],
+      "observed_new_value": [
+        "org_admin"
+      ],
+      "matched": true
+    },
+    {
+      "point": "iam.perms",
+      "iteration": 9,
+      "write_ms": 2.155,
+      "server_commit_to_del_ms": 0.146,
+      "observed_response_to_new_value_ms": 2.195,
+      "invalidated_keys": 1,
+      "baseline": [
+        "org_admin"
+      ],
+      "observed_new_value": [
+        "sales_lead"
+      ],
+      "matched": true
+    },
+    {
+      "point": "iam.perms",
+      "iteration": 10,
+      "write_ms": 2.129,
+      "server_commit_to_del_ms": 0.146,
+      "observed_response_to_new_value_ms": 2.165,
+      "invalidated_keys": 1,
+      "baseline": [
+        "sales_lead"
+      ],
+      "observed_new_value": [
+        "org_admin"
+      ],
+      "matched": true
+    },
+    {
+      "point": "iam.perms",
+      "iteration": 11,
+      "write_ms": 1.994,
+      "server_commit_to_del_ms": 0.134,
+      "observed_response_to_new_value_ms": 2.21,
+      "invalidated_keys": 1,
+      "baseline": [
+        "org_admin"
+      ],
+      "observed_new_value": [
+        "sales_lead"
+      ],
+      "matched": true
+    },
+    {
+      "point": "iam.perms",
+      "iteration": 12,
+      "write_ms": 2.256,
+      "server_commit_to_del_ms": 0.164,
+      "observed_response_to_new_value_ms": 2.149,
+      "invalidated_keys": 1,
+      "baseline": [
+        "sales_lead"
+      ],
+      "observed_new_value": [
+        "org_admin"
+      ],
+      "matched": true
+    },
+    {
+      "point": "iam.perms",
+      "iteration": 13,
+      "write_ms": 2.026,
+      "server_commit_to_del_ms": 0.132,
+      "observed_response_to_new_value_ms": 2.055,
+      "invalidated_keys": 1,
+      "baseline": [
+        "org_admin"
+      ],
+      "observed_new_value": [
+        "sales_lead"
+      ],
+      "matched": true
+    },
+    {
+      "point": "iam.perms",
+      "iteration": 14,
+      "write_ms": 1.925,
+      "server_commit_to_del_ms": 0.123,
+      "observed_response_to_new_value_ms": 2.233,
+      "invalidated_keys": 1,
+      "baseline": [
+        "sales_lead"
+      ],
+      "observed_new_value": [
+        "org_admin"
+      ],
+      "matched": true
+    },
+    {
+      "point": "iam.perms",
+      "iteration": 15,
+      "write_ms": 2.067,
+      "server_commit_to_del_ms": 0.137,
+      "observed_response_to_new_value_ms": 2.387,
+      "invalidated_keys": 1,
+      "baseline": [
+        "org_admin"
+      ],
+      "observed_new_value": [
+        "sales_lead"
+      ],
+      "matched": true
+    },
+    {
+      "point": "iam.perms",
+      "iteration": 16,
+      "write_ms": 2.019,
+      "server_commit_to_del_ms": 0.128,
+      "observed_response_to_new_value_ms": 2.183,
+      "invalidated_keys": 1,
+      "baseline": [
+        "sales_lead"
+      ],
+      "observed_new_value": [
+        "org_admin"
+      ],
+      "matched": true
+    },
+    {
+      "point": "iam.perms",
+      "iteration": 17,
+      "write_ms": 2.067,
+      "server_commit_to_del_ms": 0.138,
+      "observed_response_to_new_value_ms": 2.075,
+      "invalidated_keys": 1,
+      "baseline": [
+        "org_admin"
+      ],
+      "observed_new_value": [
+        "sales_lead"
+      ],
+      "matched": true
+    },
+    {
+      "point": "iam.perms",
+      "iteration": 18,
+      "write_ms": 2.459,
+      "server_commit_to_del_ms": 0.167,
+      "observed_response_to_new_value_ms": 2.255,
+      "invalidated_keys": 1,
+      "baseline": [
+        "sales_lead"
+      ],
+      "observed_new_value": [
+        "org_admin"
+      ],
+      "matched": true
+    },
+    {
+      "point": "iam.perms",
+      "iteration": 19,
+      "write_ms": 2.029,
+      "server_commit_to_del_ms": 0.125,
+      "observed_response_to_new_value_ms": 2.008,
+      "invalidated_keys": 1,
+      "baseline": [
+        "org_admin"
+      ],
+      "observed_new_value": [
+        "sales_lead"
+      ],
+      "matched": true
+    },
+    {
+      "point": "iam.perms",
+      "iteration": 20,
+      "write_ms": 1.945,
+      "server_commit_to_del_ms": 0.129,
+      "observed_response_to_new_value_ms": 2.041,
+      "invalidated_keys": 1,
+      "baseline": [
+        "sales_lead"
+      ],
+      "observed_new_value": [
+        "org_admin"
+      ],
+      "matched": true
+    },
+    {
+      "point": "iam.perms",
+      "iteration": 21,
+      "write_ms": 2.185,
+      "server_commit_to_del_ms": 0.17,
+      "observed_response_to_new_value_ms": 2.406,
+      "invalidated_keys": 1,
+      "baseline": [
+        "org_admin"
+      ],
+      "observed_new_value": [
+        "sales_lead"
+      ],
+      "matched": true
+    },
+    {
+      "point": "iam.perms",
+      "iteration": 22,
+      "write_ms": 1.992,
+      "server_commit_to_del_ms": 0.135,
+      "observed_response_to_new_value_ms": 2.069,
+      "invalidated_keys": 1,
+      "baseline": [
+        "sales_lead"
+      ],
+      "observed_new_value": [
+        "org_admin"
+      ],
+      "matched": true
+    },
+    {
+      "point": "iam.perms",
+      "iteration": 23,
+      "write_ms": 1.974,
+      "server_commit_to_del_ms": 0.13,
+      "observed_response_to_new_value_ms": 2.205,
+      "invalidated_keys": 1,
+      "baseline": [
+        "org_admin"
+      ],
+      "observed_new_value": [
+        "sales_lead"
+      ],
+      "matched": true
+    },
+    {
+      "point": "iam.perms",
+      "iteration": 24,
+      "write_ms": 2.062,
+      "server_commit_to_del_ms": 0.126,
+      "observed_response_to_new_value_ms": 2.191,
+      "invalidated_keys": 1,
+      "baseline": [
+        "sales_lead"
+      ],
+      "observed_new_value": [
+        "org_admin"
+      ],
+      "matched": true
+    },
+    {
+      "point": "iam.perms",
+      "iteration": 25,
+      "write_ms": 2.174,
+      "server_commit_to_del_ms": 0.171,
+      "observed_response_to_new_value_ms": 2.142,
+      "invalidated_keys": 1,
+      "baseline": [
+        "org_admin"
+      ],
+      "observed_new_value": [
+        "sales_lead"
+      ],
+      "matched": true
+    },
+    {
+      "point": "iam.perms",
+      "iteration": 26,
+      "write_ms": 2.189,
+      "server_commit_to_del_ms": 0.142,
+      "observed_response_to_new_value_ms": 2.32,
+      "invalidated_keys": 1,
+      "baseline": [
+        "sales_lead"
+      ],
+      "observed_new_value": [
+        "org_admin"
+      ],
+      "matched": true
+    },
+    {
+      "point": "iam.perms",
+      "iteration": 27,
+      "write_ms": 1.944,
+      "server_commit_to_del_ms": 0.141,
+      "observed_response_to_new_value_ms": 2.137,
+      "invalidated_keys": 1,
+      "baseline": [
+        "org_admin"
+      ],
+      "observed_new_value": [
+        "sales_lead"
+      ],
+      "matched": true
+    },
+    {
+      "point": "iam.perms",
+      "iteration": 28,
+      "write_ms": 2.299,
+      "server_commit_to_del_ms": 0.172,
+      "observed_response_to_new_value_ms": 2.26,
+      "invalidated_keys": 1,
+      "baseline": [
+        "sales_lead"
+      ],
+      "observed_new_value": [
+        "org_admin"
+      ],
+      "matched": true
+    },
+    {
+      "point": "iam.perms",
+      "iteration": 29,
+      "write_ms": 1.99,
+      "server_commit_to_del_ms": 0.136,
+      "observed_response_to_new_value_ms": 2.069,
+      "invalidated_keys": 1,
+      "baseline": [
+        "org_admin"
+      ],
+      "observed_new_value": [
+        "sales_lead"
+      ],
+      "matched": true
+    },
+    {
+      "point": "iam.perms",
+      "iteration": 30,
+      "write_ms": 2.011,
+      "server_commit_to_del_ms": 0.13,
+      "observed_response_to_new_value_ms": 2.048,
+      "invalidated_keys": 1,
+      "baseline": [
+        "sales_lead"
+      ],
+      "observed_new_value": [
+        "org_admin"
+      ],
+      "matched": true
+    }
+  ]
+}

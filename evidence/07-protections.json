@@ -1,0 +1,58 @@
+{
+  "generated_at": "2026-11-21T13:20:37.701080+00:00",
+  "cache_on_url": "http://127.0.0.1:8011",
+  "cache_off_url": "http://127.0.0.1:8012",
+  "penetration": {
+    "unknown_item_same_key": true,
+    "cache_on": {
+      "requests": 300,
+      "status_404": 300,
+      "db_queries_total": 0,
+      "bloom_guard_hits": 300,
+      "negative_guard_hits": 0
+    },
+    "cache_off": {
+      "requests": 60,
+      "status_404": 60,
+      "db_queries_total": 60
+    }
+  },
+  "negative_cache": {
+    "first_db_queries": 1,
+    "second_db_queries": 0,
+    "second_state": "negative",
+    "ttl_seconds": 30
+  },
+  "stampede": {
+    "cache_on": {
+      "requests": 100,
+      "ok": 100,
+      "db_queries_total": 3,
+      "loads": 1,
+      "lock_waits": 29,
+      "lock_timeouts": 0
+    },
+    "cache_off": {
+      "requests": 100,
+      "ok": 100,
+      "db_queries_total": 300
+    },
+    "key_ttl_after_first_read": 638
+  },
+  "cache_stats": {
+    "dashboard.metrics": {
+      "hits": 99,
+      "misses": 30,
+      "negative_hits": 0,
+      "bypass": 0,
+      "errors": 0,
+      "loads": 1,
+      "bloom_rejects": 0,
+      "lock_waits": 29,
+      "lock_timeouts": 0,
+      "load_time_ms": 3.780291,
+      "redis_time_ms": 613.4307849999991,
+      "lock_wait_ms": 367.94112600000005
+    }
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "generated_at": "2026-11-21T13:15:44.717060+00:00",
+  "enabled": true,
+  "ttl_scale": 1.0,
+  "points": [
+    {
+      "code": "tax.dict.tree",
+      "name": "字典树（S2-TAX 字典与标签中心）",
+      "pattern": "ms:tax:dict:tree:{org_id}:{dict_code}",
+      "ttl_seconds": 900,
+      "scope": "org_id + dict_code",
+      "invalidation": "字典项新增/改名/排序/软删除：数据库提交后 DEL 该字典的树键；下一次读取重建",
+      "payload": "整棵字典树 JSON（industry/tags/region，约 300 个节点）",
+      "jitter_ratio": 0.1,
+      "protections": [
+        "single-flight 分布式锁",
+        "TTL ±10% 抖动",
+        "Redis 故障时回源 DB"
+      ],
+      "ttl_bounds_seconds": [
+        810,
+        990
+      ]
+    },
+    {
+      "code": "site.home",
+      "name": "首页聚合",
+      "pattern": "ms:site:home:{org_id}:{site_id}:{date}",
+      "ttl_seconds": 300,
+      "scope": "org_id + site_id + 自然日",
+      "invalidation": "Banner 发布/修改、活动或会员资料变更：提交后按站点 DEL 当日键",
+      "payload": "Banner 5 条 + 近期活动 5 条 + 推荐会员 5 条 + 三项计数",
+      "jitter_ratio": 0.1,
+      "protections": [
+        "single-flight 分布式锁",
+        "TTL ±10% 抖动",
+        "按自然日分键，跨日自然失效"
+      ],
+      "ttl_bounds_seconds": [
+        270,
+        330
+      ]
+    },
+    {
+      "code": "dashboard.metrics",
+      "name": "驾驶舱指标",
+      "pattern": "ms:dashboard:metrics:{org_id}:{site_id}:{period}",
+      "ttl_seconds": 600,
+      "scope": "org_id + site_id + 账期（YYYY-MM）",
+      "invalidation": "商机阶段、合同状态、回款计划变更：提交后按站点+账期 DEL（批量改动按前缀清理）",
+      "payload": "商机阶段汇总 + 合同状态汇总 + 回款应收/实收/逾期汇总",
+      "jitter_ratio": 0.1,
+      "protections": [
+        "single-flight 分布式锁",
+        "TTL ±10% 抖动",
+        "按账期分键，避免跨月脏读"
+      ],
+      "ttl_bounds_seconds": [
+        540,
+        660
+      ]
+    },
+    {
+      "code": "iam.perms",
+      "name": "权限点",
+      "pattern": "ms:iam:perms:{org_id}:{user_id}",
+      "ttl_seconds": 1800,
+      "scope": "org_id + user_id",
+      "invalidation": "用户角色或角色权限变更：提交后 DEL 该用户键；支持传入多个用户批量清理",
+      "payload": "用户角色列表 + 去重后的 allow 权限点列表",
+      "jitter_ratio": 0.05,
+      "protections": [
+        "single-flight 分布式锁",
+        "TTL ±5% 抖动",
+        "权限变更立即 DEL，不依赖过期"
+      ],
+      "ttl_bounds_seconds": [
+        1710,
+        1890
+      ]
+    }
+  ],
+  "auxiliary": [
+    {
+      "code": "tax.dict.item.negative",
+      "name": "字典项查询负缓存（穿透防护）",
+      "pattern": "ms:tax:dict:item:neg:{org_id}:{dict_code}:{item_code}",
+      "ttl_seconds": 30,
+      "scope": "org_id + dict_code + item_code",
+      "invalidation": "仅缓存「不存在」结果，30 秒自然过期；字典项新增后重建 Bloom 并删除负缓存",
+      "payload": "固定空值哨兵（不缓存真实内容）",
+      "jitter_ratio": 0.0,
+      "protections": [
+        "Bloom 过滤器先判不存在",
+        "空值哨兵负缓存",
+        "短 TTL 限制脏窗口"
+      ],
+      "ttl_bounds_seconds": [
+        30,
+        30
+      ]
+    }
+  ],
+  "bloom_key_pattern": "ms:tax:bloom:{org_id}:{dict_code}",
+  "lock_key_pattern": "ms:lock:{cache_key}",
+  "singleflight_ttl_ms": 5000
+}

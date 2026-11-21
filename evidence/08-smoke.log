@@ -1,0 +1,78 @@
+== healthz
+{"ok":true,"db":true,"redis":true,"cache_enabled":true}
+== four cache points
+[('tax.dict.tree', 'ms:tax:dict:tree:{org_id}:{dict_code}', 900), ('site.home', 'ms:site:home:{org_id}:{site_id}:{date}', 300), ('dashboard.metrics', 'ms:dashboard:metrics:{org_id}:{site_id}:{period}', 600), ('iam.perms', 'ms:iam:perms:{org_id}:{user_id}', 1800)]
+[('tax.dict.item.negative', 'ms:tax:dict:item:neg:{org_id}:{dict_code}:{item_code}', 30)]
+
+== /api/tax/dicts/industry/tree (first / second)
+HTTP/1.1 200 OK
+x-cache-point: tax.dict.tree
+x-cache-enabled: 1
+x-db-queries: 0
+x-db-time-ms: 0.000
+x-response-time-ms: 1.654
+x-cache-state: hit
+HTTP/1.1 200 OK
+x-cache-point: tax.dict.tree
+x-cache-enabled: 1
+x-db-queries: 0
+x-db-time-ms: 0.000
+x-response-time-ms: 1.409
+x-cache-state: hit
+
+== /api/site/home (first / second)
+HTTP/1.1 200 OK
+x-cache-point: site.home
+x-cache-enabled: 1
+x-db-queries: 0
+x-db-time-ms: 0.000
+x-response-time-ms: 0.847
+x-cache-state: hit
+HTTP/1.1 200 OK
+x-cache-point: site.home
+x-cache-enabled: 1
+x-db-queries: 0
+x-db-time-ms: 0.000
+x-response-time-ms: 0.791
+x-cache-state: hit
+
+== /api/dashboard/metrics (first / second)
+HTTP/1.1 200 OK
+x-cache-point: dashboard.metrics
+x-cache-enabled: 1
+x-db-queries: 0
+x-db-time-ms: 0.000
+x-response-time-ms: 0.691
+x-cache-state: hit
+HTTP/1.1 200 OK
+x-cache-point: dashboard.metrics
+x-cache-enabled: 1
+x-db-queries: 0
+x-db-time-ms: 0.000
+x-response-time-ms: 1.035
+x-cache-state: hit
+
+== /api/iam/permissions (first / second)
+HTTP/1.1 200 OK
+x-cache-point: iam.perms
+x-cache-enabled: 1
+x-db-queries: 0
+x-db-time-ms: 0.000
+x-response-time-ms: 0.685
+x-cache-state: hit
+HTTP/1.1 200 OK
+x-cache-point: iam.perms
+x-cache-enabled: 1
+x-db-queries: 0
+x-db-time-ms: 0.000
+x-response-time-ms: 0.701
+x-cache-state: hit
+
+== unknown dictionary item (bloom guard)
+HTTP/1.1 404 Not Found
+x-cache-enabled: 1
+x-db-queries: 0
+x-db-time-ms: 0.000
+x-cache-point: tax.dict.item.negative
+x-cache-state: bloom_reject
+{"detail":{"code":"ITEM_NOT_FOUND","guard":"bloom"}}
